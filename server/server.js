@@ -35,19 +35,15 @@ app.post('/', async (req, res) => {
       presence_penalty: 0, // Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.
     });
 
-    const response = await openai.createChatCompletion({
-    model: 'gpt-3.5-turbo',
-    messages: [
-      {
-        role: 'user',
-        content: `${prompt}`
-      },
-          {
-        role: 'system',
-        content: "You will follow the conversation and respond to the queries asked by the 'user's content. You will act as the assistant"
-      }
-    ]
-  });
+     const response = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: [
+        { role: "system", content: "You are a helpful assistant."  },
+        { role: "user", content: prompt },
+      ],
+      temperature: 0.5,
+      max_tokens: 3000,
+    });
 
 
 console.log('send request to AI API')
