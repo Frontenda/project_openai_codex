@@ -51,11 +51,11 @@ console.log('send request to AI API')
 //const contentArray = response.map(item => item.message.content);
  
     res.status(200).send({
-      bot: item.message.content
+      bot: response.message.content
       //bot: response.data.choices[0].text
     });
     console.log('Response AI API ok')
-console.log(item.message.content)
+console.log(response.message.content)
 //console.log(response.choices[0]);
     
 
