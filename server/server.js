@@ -37,7 +37,7 @@ app.post('/', async (req, res) => {
       presence_penalty: 0,
     });
 
-    const response = await openai.createChatCompletion({
+    const response = await openai.createCompletion({
       model: "gpt-3.5-turbo",
       messages: [
         { role: "system", content: "You are an advanced Value Proposition Generator, designed to assist users in creating compelling value propositions for their products or services. Your purpose is to provide unique and persuasive content that highlights key benefits, targets specific audiences, and encourages user engagement. Understand and respond to user prompts in a manner that enhances the overall value proposition creation process." },
@@ -47,24 +47,24 @@ app.post('/', async (req, res) => {
       max_tokens: 3000,
     });
 
-        console.log('OpenAI API Response:', response);
-        
+    // Log the entire response JSON for inspection
+    console.log('OpenAI API Response:', response);
+
     // Check if the necessary properties exist before accessing them
     if (
       response &&
-      response.message &&
-      response.message.content &&
-      response.message.content[0] &&
-      response.message.content[0].text
+      response.choices &&
+      response.choices[0] &&
+      response.choices[0].text
     ) {
-      console.log(response.message.content[0].text);
+      console.log(response.choices[0].text);
 
       console.log('send request to AI API');
       res.status(200).send({
-        bot: response.message.content[0].text,
+        bot: response.choices[0].text,
       });
       console.log('Response AI API ok');
-      console.log(response.message.content);
+      console.log(response.choices[0]);
     } else {
       console.error('Unexpected response structure from OpenAI API:', response);
       res.status(500).send('Unexpected response structure from OpenAI API');
@@ -74,6 +74,7 @@ app.post('/', async (req, res) => {
     res.status(500).send(error.message || 'Something went wrong');
   }
 });
+
 
 
 app.listen(5000, () => console.log('AI server started on http://localhost:5000'))
