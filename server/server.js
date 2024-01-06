@@ -38,7 +38,7 @@ app.post('/', async (req, res) => {
      const response = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
       messages: [
-        { role: "system", content: "You are a helpful assistant."  },
+        { role: "system", content: "You are an advanced Value Proposition Generator, designed to assist users in creating compelling value propositions for their products or services. Your purpose is to provide unique and persuasive content that highlights key benefits, targets specific audiences, and encourages user engagement. Understand and respond to user prompts in a manner that enhances the overall value proposition creation process."  },
         { role: "user", content: prompt },
       ],
       temperature: 0.5,

@@ -87,11 +87,11 @@ const handleSubmit = async (e) => {
     // messageDiv.innerHTML = "..."
     loader(messageDiv)
 
-    const pre_prompt = ' Generate a Value Proposition and Landing page Copy text, headline, 3 main features, for Product from description. '
+    const pre_prompt = ' Generate a Landing page Copy text, headline, 3 main features, for Product with a product description: '
     
 
     const post_prompt = 'Define niches are where product the best for option . Benefits Emphasize List 3-5 most valuable key benefits that support Headline  of Product for target audience. 3 Create a sub-headline for the value proposition that emphasizes from 2 response Benefits 2 and appeals to target audience 4 Write a paragraph that describes the value proposition and benefits of product for target audience . 5. Generate 1 user review that highlight the great values of product for  target audience. 6. Create a call to action phrase and button text that encourages target audience to desired action with product  7. Highlight the versatility and capabilities of product for different use cases. 8. Provide examples of different user groups or industries that can benefit from product. 9. Emphasize the flexibility of product  in meeting the needs of various users. 10. Discuss the potential value of product for target audience in terms of key benefits 11.'
-    const addition_prompt = ' Provide examples use cases of how PRODUCT has helped users create RESULT for their NICHE , in WHERE business or personal use? Product Description: '
+    const addition_prompt = ' Provide examples use cases of how PRODUCT has helped users create RESULT for their NICHE , in WHERE business or personal use? Responde 3000 symbols.'
    
     console.log(data.get('prompt'))
     const response = await fetch('https://chatgptapi-fdew.onrender.com', {
@@ -100,7 +100,7 @@ const handleSubmit = async (e) => {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            prompt: pre_prompt  + post_prompt + addition_prompt + data.get('prompt')
+            prompt: pre_prompt + data.get('prompt') + post_prompt + addition_prompt
         })
     })
 
