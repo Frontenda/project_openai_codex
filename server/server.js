@@ -45,6 +45,7 @@ app.post('/', async (req, res) => {
       max_tokens: 3000,
     });
 
+     console.log(response.choices[0]);
 
 console.log('send request to AI API')
 //console.log(response.data.choices)
