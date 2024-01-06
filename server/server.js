@@ -51,11 +51,13 @@ console.log('send request to AI API')
 
  
     res.status(200).send({
-      bot: response.data.choices[0].text
+      bot: response.data.choices.content
+      //bot: response.data.choices[0].text
     });
     console.log('Response AI API ok')
-    console.log(response.data.choices)
+
 console.log(response.choices[0]);
+    console.log(response.data.choices)
 
   } catch (error) {
     console.error(error)
