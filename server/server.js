@@ -47,6 +47,8 @@ app.post('/', async (req, res) => {
       max_tokens: 3000,
     });
 
+        console.log('OpenAI API Response:', response);
+        
     // Check if the necessary properties exist before accessing them
     if (
       response &&
