@@ -36,7 +36,7 @@ app.post('/', async (req, res) => {
     //  presence_penalty: 0, // Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.
    // });
 
-  const response = await openai.chat.completions.create ({
+  const response = await openai.createCompletion({
     model: "gpt-3.5-turbo",
     messages: [
       { role: "system", content: "You are a helpful assistant." },
