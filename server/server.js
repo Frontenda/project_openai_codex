@@ -25,6 +25,8 @@ app.post('/', async (req, res) => {
   try {
     const prompt = req.body.prompt;
 
+    console.log('prompt ' + prompt);
+
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
       prompt: `${prompt}`,
@@ -45,13 +47,13 @@ app.post('/', async (req, res) => {
       max_tokens: 3000,
     });
 
-     
+   console.log(response.message.content[0])  
 
 console.log('send request to AI API')
 //const contentArray = response.map(item => item.message.content);
  
     res.status(200).send({
-      bot: response.message.content
+      bot: response.message.content[0].text
       //bot: response.data.choices[0].text
     });
     console.log('Response AI API ok')
