@@ -48,16 +48,16 @@ app.post('/', async (req, res) => {
      
 
 console.log('send request to AI API')
-const contentArray = response.map(item => item.message.content);
+//const contentArray = response.map(item => item.message.content);
  
     res.status(200).send({
-      bot: contentArray
+      bot: item.message.content
       //bot: response.data.choices[0].text
     });
     console.log('Response AI API ok')
-
+console.log(item.message.content)
 //console.log(response.choices[0]);
-    console.log(contentArray)
+    
 
   } catch (error) {
     console.error(error)
