@@ -25,7 +25,7 @@ app.post('/', async (req, res) => {
   try {
     const prompt = req.body.prompt;
 
-    const response = await openai.createCompletion({
+    const completion = await openai.createCompletion({
       model: "text-davinci-003",
       prompt: `${prompt}`,
       temperature: 0, // Higher values means the model will take more risks.
@@ -35,8 +35,23 @@ app.post('/', async (req, res) => {
       presence_penalty: 0, // Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.
     });
 
+    const response = await openai.createChatCompletion({
+    model: 'gpt-3.5-turbo',
+    messages: [
+      {
+        role: 'user',
+        content: `${prompt}`
+      },
+          {
+        role: 'system',
+        content: "You will follow the conversation and respond to the queries asked by the 'user's content. You will act as the assistant"
+      }
+    ]
+  });
+
+
 console.log('send request to AI API')
-console.log(response.data.choices)
+//console.log(response.data.choices)
 
  
     res.status(200).send({
