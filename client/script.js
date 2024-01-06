@@ -94,24 +94,26 @@ const handleSubmit = async (e) => {
     const addition_prompt = ' Provide examples use cases of how PRODUCT has helped users create RESULT for their NICHE , in WHERE business or personal use? Product Description: '
    
     console.log(data.get('prompt'))
+
     const response = await fetch('https://chatgptapi-fdew.onrender.com', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            prompt: pre_prompt  + post_prompt + addition_prompt + data.get('prompt')
+            prompt: pre_prompt  + post_prompt + addition_prompt + data.get('prompt') + 'Response in Markdown format about 3000 sybmols'
+                //  prompt: pre_prompt  + post_prompt + addition_prompt + data.get('prompt') + 'Response in hmtl format, as h1 for titles, h2 for subheadline, ul>li for features, p for text. Style html with TailwindCSS style classes
         })
     })
 
     clearInterval(loadInterval)
     messageDiv.innerHTML = " "
-
+    
     if (response.ok) {
         const data = await response.json();
-        const parsedData = data.bot.trim() // trims any trailing spaces/'\n' 
+       // const parsedData = data.bot.trim() // trims any trailing spaces/'\n' 
 
-        typeText(messageDiv, parsedData)
+        typeText(messageDiv, data.bot)
     } else {
         const err = await response.text()
 

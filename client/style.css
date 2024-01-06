@@ -150,7 +150,13 @@ form img {
 }
 
 .hero{
-  padding: 2rem;
+  text-align: center;
+  padding-top: 2rem;
   color:white;
-  
+
+}
+.hero2 {
+  padding: 0.5rem;
+  color: white;
+  text-align: center;
 }
