@@ -47,6 +47,7 @@ function generateUniqueId() {
 function chatStripe(isAi, value, uniqueId) {
     return (
         `
+        
         <div class="wrapper ${isAi && 'ai'}">
             <div class="chat">
                 <div class="profile">
@@ -86,13 +87,17 @@ const handleSubmit = async (e) => {
     // messageDiv.innerHTML = "..."
     loader(messageDiv)
 
+    const pre_prompt = '1 Generate a value proposition headline for product with a description: '
+    
+    const post_prompt = '1.1. Define Target Audience : 2 Benefits Emphasize List 3-5 most valuable key benefits that support Value Proposition of Product ew Prompt for target audience . 3 Create a sub-headline for the value proposition that emphasizes from 2 response Benefits 2 and appeals to target audience 4 Write a paragraph that describes the value proposition and benefits of product for target audience . 5. Generate 3 user reviews that highlight the great values of product for \[target audience]. 6. Create a call to action phrase and button text that encourages target audience to desired action with product  7. Highlight the versatility and capabilities of \[product] for different use cases. 8. Provide examples of different user groups or industries that can benefit from \[product]. 9. Emphasize the flexibility of product  in meeting the needs of various users. 10. Discuss the potential value of product for target audience in terms of key benefits 11. Provide examples use cases of how PRODUCT has helped users create RESULT for their NICHE , in WHERE business or personal use? '
+    console.log(data.get('prompt'))
     const response = await fetch('https://chatgptapi-fdew.onrender.com', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            prompt: data.get('prompt')
+            prompt: pre_prompt + data.get('prompt') + post_prompt
         })
     })
 
