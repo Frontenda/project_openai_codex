@@ -56,7 +56,7 @@ console.log('send request to AI API')
     });
     console.log('Response AI API ok')
 
-console.log(response.choices[0]);
+//console.log(response.choices[0]);
     console.log(response.data.choices)
 
   } catch (error) {
